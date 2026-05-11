@@ -69,10 +69,13 @@
 
     if (zoneResult.requiresManualSelection) {
       zoneFeedback.className = 'zone-feedback warning';
-      zoneFeedback.textContent =
-        zoneResult.reason === 'house_number_required'
-          ? 'ברחוב הזה נדרש מספר בית כדי לזהות את אזור הארנונה. אפשר להשלים מספר בית או לבחור אזור ידנית.'
-          : 'לא הצלחנו לזהות אזור לפי הכתובת. אפשר לבחור אזור ידנית.';
+      if (zoneResult.reason === 'house_number_required') {
+        zoneFeedback.textContent = 'ברחוב הזה נדרש מספר בית כדי לזהות את אזור הארנונה. אפשר להשלים מספר בית או לבחור אזור ידנית.';
+      } else if (zoneResult.reason === 'building_year_required') {
+        zoneFeedback.textContent = 'לפי צו הארנונה, ברחוב זה הסיווג תלוי בשנת סיום הבנייה או ההרחבה: אם הסתיים אחרי 1.1.2005 יש לבחור אזור ב׳; אחרת יש לבחור אזור א׳.';
+      } else {
+        zoneFeedback.textContent = 'לא הצלחנו לזהות אזור לפי הכתובת. אפשר לבחור אזור ידנית.';
+      }
       manualZone.hidden = false;
       return { effectiveZone, zoneResult };
     }
