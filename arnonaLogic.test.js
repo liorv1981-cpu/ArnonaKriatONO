@@ -19,6 +19,18 @@ assert.equal(resolveArnonaZone('הרצל 55').zone, 'ב');
 assert.equal(resolveArnonaZone('לוס אנגלס 34').zone, 'ג');
 assert.equal(resolveArnonaZone('הנשיא 10').zone, 'א');
 assert.equal(resolveArnonaZone('הרצל').requiresManualSelection, true);
+assert.deepEqual(
+  {
+    zone: resolveArnonaZone('שאול המלך 16').zone,
+    requiresManualSelection: resolveArnonaZone('שאול המלך 16').requiresManualSelection,
+    reason: resolveArnonaZone('שאול המלך 16').reason,
+  },
+  {
+    zone: null,
+    requiresManualSelection: true,
+    reason: 'building_year_required',
+  },
+);
 
 assert.equal(resolveResidentialType(126), '2');
 assert.equal(resolveResidentialType(96), '4א');
