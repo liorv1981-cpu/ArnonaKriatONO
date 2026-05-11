@@ -179,6 +179,10 @@ function resolveArnonaZone(address) {
     return { zone: null, confidence: 'low', requiresManualSelection: true, reason: 'house_number_required', parsed };
   }
 
+  if (SPECIAL_ZONE_B_NEWER_BUILDING_STREETS.includes(parsed.streetName)) {
+    return { zone: null, confidence: 'low', requiresManualSelection: true, reason: 'building_year_required', parsed };
+  }
+
   return { zone: 'א', confidence: 'medium', requiresManualSelection: false, reason: 'default_zone_a_after_successful_parse', parsed };
 }
 
