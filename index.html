@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>מחשבון ארנונה קריית אונו 2026</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">קריית אונו 2026</p>
+          <h1 id="page-title">מחשבון ארנונה משוער</h1>
+          <p class="lede">אומדן לדירת מגורים רגילה בבניין משותף, ללא הנחות, פטורים או שימושים מיוחדים.</p>
+        </div>
+        <div class="hero-stat">
+          <span>מבוסס על צו הארנונה 2026</span>
+          <strong>₪ / מ"ר לשנה</strong>
+        </div>
+      </section>
+
+      <form class="calculator" id="calculator" novalidate>
+        <section class="panel">
+          <div class="section-title">
+            <span class="icon" aria-hidden="true">⌖</span>
+            <h2>זיהוי אזור</h2>
+          </div>
+
+          <label for="address">כתובת הדירה בקריית אונו</label>
+          <input id="address" name="address" type="text" autocomplete="street-address" placeholder="לדוגמה: הרצל 55, קריית אונו">
+
+          <div class="zone-feedback" id="zoneFeedback" hidden></div>
+
+          <fieldset class="manual-zone" id="manualZone" hidden>
+            <legend>בחירת אזור ידנית</legend>
+            <div class="segmented">
+              <label><input type="radio" name="manualZone" value="א"> <span>אזור א׳</span></label>
+              <label><input type="radio" name="manualZone" value="ב"> <span>אזור ב׳</span></label>
+              <label><input type="radio" name="manualZone" value="ג"> <span>אזור ג׳</span></label>
+            </div>
+          </fieldset>
+        </section>
+
+        <section class="panel">
+          <div class="section-title">
+            <span class="icon" aria-hidden="true">□</span>
+            <h2>פרטי הנכס</h2>
+          </div>
+
+          <label for="apartmentArea">שטח הדירה לפי פרסום / סקיצת שיווק</label>
+          <div class="unit-input">
+            <input id="apartmentArea" name="apartmentArea" type="number" min="0" step="0.1" inputmode="decimal">
+            <span>מ"ר</span>
+          </div>
+
+          <fieldset>
+            <legend>האם השטח שהוזן כבר כולל מרפסת שמש?</legend>
+            <div class="segmented">
+              <label><input type="radio" name="balconyIncluded" value="true"> <span>כן</span></label>
+              <label><input type="radio" name="balconyIncluded" value="false"> <span>לא</span></label>
+              <label><input type="radio" name="balconyIncluded" value="unknown" checked> <span>לא יודע</span></label>
+            </div>
+          </fieldset>
+
+          <div class="conditional" id="balconyAreaWrap" hidden>
+            <label for="balconyArea">שטח מרפסת שמש</label>
+            <div class="unit-input">
+              <input id="balconyArea" name="balconyArea" type="number" min="0" step="0.1" inputmode="decimal">
+              <span>מ"ר</span>
+            </div>
+          </div>
+
+          <fieldset>
+            <legend>האם יש מחסן מוצמד לדירה?</legend>
+            <div class="segmented">
+              <label><input type="radio" name="storageExists" value="false" checked> <span>אין מחסן</span></label>
+              <label><input type="radio" name="storageExists" value="true"> <span>יש מחסן</span></label>
+            </div>
+          </fieldset>
+
+          <div class="conditional" id="storageAreaWrap" hidden>
+            <label for="storageArea">שטח המחסן</label>
+            <div class="unit-input">
+              <input id="storageArea" name="storageArea" type="number" min="0" step="0.1" inputmode="decimal">
+              <span>מ"ר</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="result-panel" id="resultPanel" aria-live="polite">
+          <p class="result-kicker">תשלום ארנונה משוער לחודשיים</p>
+          <output class="result-total" id="biMonthlyResult">יש להזין פרטים</output>
+          <p class="monthly" id="monthlyResult"></p>
+          <dl class="breakdown" id="breakdown"></dl>
+          <div class="warnings" id="warnings"></div>
+        </section>
+      </form>
+
+      <p class="disclaimer">
+        החישוב הוא אומדן בלבד ואינו מחליף את חיוב הארנונה הרשמי של עיריית קריית אונו.
+        הנתונים מבוססים על צו הארנונה לשנת 2026 ועל פרטי הנכס שהוזנו.
+      </p>
+    </main>
+
+    <script src="./arnonaLogic.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
